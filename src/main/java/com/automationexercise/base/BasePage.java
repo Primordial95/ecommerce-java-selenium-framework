@@ -1,5 +1,6 @@
 package com.automationexercise.base;
 
+import com.automationexercise.config.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,10 +16,11 @@ import java.time.Duration;
 public class BasePage {
     protected final WebDriver driver;
     protected final WebDriverWait wait;
+    protected final int timeout = ConfigReader.getTimeout();
 
-    public BasePage(WebDriver driver) {
+    public BasePage(WebDriver driver){
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
     }
 
     public WebElement waitForElementToAppear(By findBy) {
@@ -35,6 +37,10 @@ public class BasePage {
 
     public String getText(By locator){
         return waitForElementToAppear(locator).getText();
+    }
+
+    public void sendKeys(By locator, String text){
+        waitForElementToAppear(locator).sendKeys(text);
     }
 
 

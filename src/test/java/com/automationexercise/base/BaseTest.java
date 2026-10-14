@@ -33,6 +33,7 @@ public class BaseTest {
                     "profile.default_content_setting_values.ads", 2
             ));
             options.setPageLoadStrategy(PageLoadStrategy.EAGER);
+            options.addArguments("--headless");
             driver = new ChromeDriver(options);
         } else if (browser_name.equalsIgnoreCase("firefox")) {
             driver = new FirefoxDriver();

@@ -1,0 +1,30 @@
+{
+  "validCredentials" : [
+    {
+    "email": "john.doe@demo.com",
+    "password": "John@123"
+  },
+    {
+      "email": "alice.smith@demo.com",
+      "password": "Alice@456"
+    },
+    {
+      "email": "mike.wilson@demo.com",
+      "password": "Mike@789"
+    }
+  ],
+  "invalidCredentials": [
+    {
+      "email": "emma.watson@demo.com",
+      "password": "Emma@123"
+    },
+    {
+      "email": "david.miller@demo.com",
+      "password": "David@456"
+    },
+    {
+      "email": "sophia.brown@demo.com",
+      "password": "Sophia@789"
+    }
+  ]
+}
