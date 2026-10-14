@@ -18,7 +18,7 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 
     public WebElement waitForElementToAppear(By findBy) {
@@ -32,6 +32,11 @@ public class BasePage {
     public String getAttribute(By locator, String attributeName) {
         return waitForElementToAppear(locator).getAttribute(attributeName);
     }
+
+    public String getText(By locator){
+        return waitForElementToAppear(locator).getText();
+    }
+
 
 
 }
