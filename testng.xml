@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Automation Exercise Suite">
+    <listeners>
+        <listener class-name="com.automationexercise.tests.registration.Listeners"/>
+    </listeners>
+    <test name="Registration Tests">
+        <packages>
+            <package name="com.automationexercise.tests"/>
+        </packages>
+    </test>
+
+</suite>
