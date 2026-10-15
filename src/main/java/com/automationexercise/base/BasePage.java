@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -18,31 +19,39 @@ public class BasePage {
     protected final WebDriverWait wait;
     protected final int timeout = ConfigReader.getTimeout();
 
-    public BasePage(WebDriver driver){
+    protected BasePage(WebDriver driver){
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
     }
 
-    public WebElement waitForElementToAppear(By findBy) {
+    private Select getSelect(By locator){
+        WebElement element = waitForElementToAppear(locator);
+        return new Select(element);
+    }
+
+    protected WebElement waitForElementToAppear(By findBy) {
        return wait.until(ExpectedConditions.visibilityOfElementLocated(findBy));
     }
 
-    public void clickElem(By locator) {
+    protected void clickElem(By locator) {
         wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
 
-    public String getAttribute(By locator, String attributeName) {
+    protected String getAttribute(By locator, String attributeName) {
         return waitForElementToAppear(locator).getAttribute(attributeName);
     }
 
-    public String getText(By locator){
+    protected String getText(By locator){
         return waitForElementToAppear(locator).getText();
     }
 
-    public void sendKeys(By locator, String text){
+    protected void sendKeys(By locator, String text){
         waitForElementToAppear(locator).sendKeys(text);
     }
 
+    protected void selectByValue(By locator, String value){
+        getSelect(locator).selectByVisibleText(value);
+    }
 
 
 }

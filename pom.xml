@@ -27,7 +27,13 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.17.2</version>
+            <version>2.22.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.5.1</version>
         </dependency>
 
     </dependencies>
@@ -35,6 +41,63 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Defaults, overridden by profiles or -D on the command line -->
+        <suiteFile>suites/testng.xml</suiteFile>
+        <headless>false</headless>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.4</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suiteFile}</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <systemPropertyVariables>
+                        <headless>${headless}</headless>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!-- Suite profiles -->
+        <profile>
+            <id>smoke</id>
+            <properties>
+                <suiteFile>suites/smoke.xml</suiteFile>
+            </properties>
+        </profile>
+        <profile>
+            <id>regression</id>
+            <properties>
+                <suiteFile>suites/regression.xml</suiteFile>
+            </properties>
+        </profile>
+        <profile>
+            <id>authentication</id>
+            <properties>
+                <suiteFile>suites/authentication.xml</suiteFile>
+            </properties>
+        </profile>
+        <profile>
+            <id>registration</id>
+            <properties>
+                <suiteFile>suites/registration.xml</suiteFile>
+            </properties>
+        </profile>
+
+        <!-- Mode profile -->
+        <profile>
+            <id>headless</id>
+            <properties>
+                <headless>true</headless>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>

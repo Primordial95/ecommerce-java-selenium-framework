@@ -4,8 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.InputStream;
 
-public class JsonReader {
+public final class JsonReader {
     private static final ObjectMapper mapper= new ObjectMapper();
+
+    private JsonReader(){
+        //utility class
+    }
 
     public static <T>T read(String resourcePath, Class<T> clazz){
         try(InputStream is = JsonReader.class.getResourceAsStream(resourcePath)){

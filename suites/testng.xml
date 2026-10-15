@@ -4,7 +4,7 @@
 <suite name="Automation Exercise Suite">
     <test name="Registration Tests">
         <packages>
-            <package name="com.automationexercise.tests"/>
+            <package name="com.automationexercise.tests.registration"/>
         </packages>
     </test>
 </suite>

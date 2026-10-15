@@ -37,7 +37,8 @@ public class ConfigReader {
     }
 
     public static String getBrowserName() {
-        return getConfigProperties("browser");
+        String browser_name = System.getProperty("browser") != null ? System.getProperty("browser") : getConfigProperties("browser");
+        return browser_name;
     }
 
     public static String getBaseUrl() {
@@ -47,6 +48,5 @@ public class ConfigReader {
     public static int getTimeout() {
         return Integer.parseInt(getConfigProperties("timeout"));
     }
-
 
 }

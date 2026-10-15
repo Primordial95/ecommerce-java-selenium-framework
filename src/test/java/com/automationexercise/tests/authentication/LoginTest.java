@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class LoginTest extends BaseTest {
     public static SignupLoginPage signupLoginPage;
 
-    @Test(description = "TC-AUTH-001: Login User with correct email and password", enabled = false)
+    @Test(description = "TC-AUTH-001: Login User with correct email and password")
     public void loginWithValidCredentials(String username, String password) {
         Assert.assertEquals(homePage.getHomePageLogoUrl(), "https://automationexercise.com/static/images/home/logo.png");
         signupLoginPage = homePage.clickSignupLoginBtn();

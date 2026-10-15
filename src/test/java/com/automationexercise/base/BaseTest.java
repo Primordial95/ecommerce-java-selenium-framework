@@ -20,6 +20,7 @@ public class BaseTest {
 
     public WebDriver initializeDriver() throws IOException {
         String browser_name = ConfigReader.getBrowserName();
+        boolean headless = Boolean.parseBoolean(System.getProperty("headless"));
         if (browser_name.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.setExperimentalOption("prefs", Map.of(
@@ -33,7 +34,9 @@ public class BaseTest {
                     "profile.default_content_setting_values.ads", 2
             ));
             options.setPageLoadStrategy(PageLoadStrategy.EAGER);
-            options.addArguments("--headless");
+            if(headless)
+                options.addArguments("--headless=new");
+            options.addArguments("--windows-size=1920,1080");
             driver = new ChromeDriver(options);
         } else if (browser_name.equalsIgnoreCase("firefox")) {
             driver = new FirefoxDriver();
