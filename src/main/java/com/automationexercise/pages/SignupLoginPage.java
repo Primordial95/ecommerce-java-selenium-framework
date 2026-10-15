@@ -15,7 +15,7 @@ public class SignupLoginPage extends BasePage {
     private static final By LOGIN_BTN = By.xpath("//h2[text()='Login to your account']/parent::div//form//button[@type='submit']");
     private static final By SIGNUP_EMAIL_FIELD = By.xpath("//h2[text()='New User Signup!']/parent::div//form//input[@type='email']");
     private static final By SIGNUP_NAME_FIELD = By.xpath("//h2[text()='New User Signup!']/parent::div//form//input[@type='text']");
-    private static final By SIGNUP_BTN = By.xpath("//h2[text()='New User Signup!']/parent::div//form//button[@type='submit']");
+    private static final By SIGNUP_BTN = By.xpath("//button[@data-qa='signup-button']");
     private static final By INVALID_CREDENTIAL_MESSAGE = By.xpath("//p[text()='Your email or password is incorrect!']");
 
 

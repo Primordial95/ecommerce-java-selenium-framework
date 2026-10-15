@@ -48,18 +48,17 @@ public class RegistrationPage extends BasePage {
     }
 
     public void fillAccountInformation(Map<String, String> data){
-        sendKeys(NAME_FIELD, data.get("name"));
-        sendKeys(EMAIL_FIELD, data.get("email"));
+//        sendKeys(NAME_FIELD, data.get("name"));
         sendKeys(PASSWORD_FIELD, data.get("password"));
         sendKeys(PASSWORD_FIELD, data.get("password"));
     }
 
     public void selectDateOfBirth(Map<String, String> data){
         String dateofbirth =DateUtils.parsedDate(data.get("dateofbirth"));
-        String[] dob = dateofbirth.split(" ");
-        selectByValue(DOB_DAY_DROPDOWN, String.valueOf(Integer.parseInt(dob[0])));
-        selectByValue(DOB_MONTH_DROPDOWN, dob[1]);
-        selectByValue(DOB_YEAR_DROPDOWN, dob[2]);
+        String[] dob = dateofbirth.split("-");
+        selectByVisibleText(DOB_DAY_DROPDOWN, String.valueOf(Integer.parseInt(dob[0])));
+        selectByVisibleText(DOB_MONTH_DROPDOWN, dob[1]);
+        selectByVisibleText(DOB_YEAR_DROPDOWN, dob[2]);
     }
 
     public void selectCheckBoxNewsletter(){
@@ -72,20 +71,27 @@ public class RegistrationPage extends BasePage {
         sendKeys(LAST_NAME_FIELD, data.get("lastname"));
         sendKeys(COMPANY_FIELD, data.get("company"));
         sendKeys(ADDRESS_FIELD, data.get("address"));
-        selectByValue(COUNTRY_DROPDOWN, data.get("country"));
+        selectByVisibleText(COUNTRY_DROPDOWN, data.get("country"));
         sendKeys(STATE_FIELD, data.get("state"));
         sendKeys(CITY_FIELD, data.get("city"));
         sendKeys(ZIPCODE_FIELD, data.get("zipcode"));
         sendKeys(MOBILE_FIELD, data.get("mobilenumber"));
     }
 
-    public void clickAccountCreate(){
+    public AccountConfirmationPage clickAccountCreate(){
         clickElem(CREATE_ACCOUNT_BTN);
+        return new AccountConfirmationPage(driver);
     }
 
-    public String getAccountCreationMessage(){
-        return getText(ACCOUNT_CREATED_CONFIRMATION);
+    public void fillCompleteRegistrationDetails(Map<String, String> data){
+        selectTitle(data);
+        fillAccountInformation(data);
+        selectDateOfBirth(data);
+        selectCheckBoxNewsletter();
+        filAddressInformation(data);
     }
+
+
 
 
 }

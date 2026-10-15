@@ -29,6 +29,10 @@ public class BasePage {
         return new Select(element);
     }
 
+    protected WebElement waitForElementToBeClickable(By findBy){
+        return wait.until(ExpectedConditions.elementToBeClickable(findBy));
+    }
+
     protected WebElement waitForElementToAppear(By findBy) {
        return wait.until(ExpectedConditions.visibilityOfElementLocated(findBy));
     }
@@ -46,10 +50,11 @@ public class BasePage {
     }
 
     protected void sendKeys(By locator, String text){
-        waitForElementToAppear(locator).sendKeys(text);
+        waitForElementToBeClickable(locator).clear();
+        driver.findElement(locator).sendKeys(text);
     }
 
-    protected void selectByValue(By locator, String value){
+    protected void selectByVisibleText(By locator, String value){
         getSelect(locator).selectByVisibleText(value);
     }
 

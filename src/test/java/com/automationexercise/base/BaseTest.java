@@ -2,6 +2,7 @@ package com.automationexercise.base;
 
 import com.automationexercise.config.ConfigReader;
 import com.automationexercise.pages.HomePage;
+import lombok.Getter;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -25,14 +26,18 @@ public class BaseTest {
             ChromeOptions options = new ChromeOptions();
             options.setExperimentalOption("prefs", Map.of(
                     "profile.default_content_setting_values.notifications", 2,
-                    // Disable Chrome password manager prompts
+                    "profile.default_content_setting_values.ads", 2,
                     "credentials_enable_service", false,
                     "profile.password_manager_enabled", false,
-                    // Disable password leak detection warning
                     "profile.password_manager_leak_detection", false,
-                    // Block some intrusive ads
-                    "profile.default_content_setting_values.ads", 2
+                    "safebrowsing.enabled", false,
+                    "autofill.profile_enabled", false,
+                    "autofill.credit_card_enabled", false
             ));
+
+            options.addArguments("--incognito");
+            options.addArguments("--disable-features=PasswordLeakDetection,PasswordManagerOnboarding");
+            options.addArguments("--disable-notifications");
             options.setPageLoadStrategy(PageLoadStrategy.EAGER);
             if(headless)
                 options.addArguments("--headless=new");
@@ -61,4 +66,8 @@ public class BaseTest {
             driver.quit();
     }
 
+
+    public WebDriver getDriver(){
+        return driver;
+    }
 }

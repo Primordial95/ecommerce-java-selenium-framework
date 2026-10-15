@@ -9,10 +9,7 @@ public class HomePage extends BasePage {
     private static final By SIGNUP_LOGIN_BTN = By.xpath("//a[normalize-space(.)='Signup / Login']");
     private static final By HOME_PAGE_LOGO = By.xpath("//img[@alt='Website for automation practice']");
     private static final By DELETE_ACCOUNT_BTN = By.xpath("//a[normalize-space(.)='Delete Account']");
-    private static final By ACCOUNT_DELETE_MESSAGE = By.xpath("//h2[@data-qa='account-deleted']//b");
-    private static final By CONTINUE_BTN = By.xpath("//a[text()='Continue']");
     private static final By WEBSITE_NAME = By.xpath("(//h1[text()='Exercise' and //span[normalize-space(.)='Automation']])[1]");
-    private static final By ACCOUNT_CREATED_MESSAGE = By.xpath("//h2[@data-qa='account-created']//b");
 
 
     public HomePage(WebDriver driver) {
@@ -28,7 +25,7 @@ public class HomePage extends BasePage {
         return getAttribute(HOME_PAGE_LOGO, "src");
     }
 
-    public boolean userLoggedIn(String username) {
+    public boolean getuserLoggedIn(String username) {
         String loggedInMessageString = "//a[normalize-space(.) = 'Logged in as %s']";
         By loggedInMessage = By.xpath(String.format(loggedInMessageString, username));
         try {
@@ -39,19 +36,14 @@ public class HomePage extends BasePage {
         }
     }
 
-    public String deleteAccount() {
+    public AccountConfirmationPage clickDeleteAccount() {
         clickElem(DELETE_ACCOUNT_BTN);
-        String message = getText(ACCOUNT_DELETE_MESSAGE);
-        clickElem(CONTINUE_BTN);
-        return message;
+        return new AccountConfirmationPage(driver);
     }
 
     public boolean websiteNameIsPresent() {
         return waitForElementToAppear(WEBSITE_NAME).isDisplayed();
     }
 
-    public String getAccountCreationMessage() {
-        return getText(ACCOUNT_CREATED_MESSAGE);
-    }
 
 }
