@@ -19,7 +19,7 @@ public class BaseTest {
     protected WebDriver driver;
     protected HomePage homePage;
 
-    public WebDriver initializeDriver() throws IOException {
+    public WebDriver initializeDriver(){
         String browser_name = ConfigReader.getBrowserName();
         boolean headless = Boolean.parseBoolean(System.getProperty("headless"));
         if (browser_name.equalsIgnoreCase("chrome")) {
@@ -41,20 +41,22 @@ public class BaseTest {
             options.setPageLoadStrategy(PageLoadStrategy.EAGER);
             if(headless)
                 options.addArguments("--headless=new");
-            options.addArguments("--windows-size=1920,1080");
+            options.addArguments("--window-size=1920,1080");
             driver = new ChromeDriver(options);
         } else if (browser_name.equalsIgnoreCase("firefox")) {
             driver = new FirefoxDriver();
         } else {
             throw new IllegalArgumentException("Unsupported browser name" + browser_name);
         }
+        DriverManager.setDriver(driver);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ZERO);
+
         return driver;
     }
 
     @BeforeMethod(alwaysRun = true)
-    public void setUp() throws IOException {
+    public void setUp(){
         driver = initializeDriver();
         driver.get(ConfigReader.getBaseUrl());
         homePage = new HomePage(driver);
@@ -62,12 +64,19 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        if (driver != null)
-            driver.quit();
+        WebDriver currentDriver = getDriver();
+        try {
+            if (currentDriver != null)
+                currentDriver.quit();
+        }
+        finally {
+            DriverManager.unload();
+            driver =null;
+        }
     }
 
 
     public WebDriver getDriver(){
-        return driver;
+        return DriverManager.getDriver();
     }
 }

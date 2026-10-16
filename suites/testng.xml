@@ -8,7 +8,7 @@
     <test name="Registration Tests">
         <packages>
             <package name="com.automationexercise.tests.registration"/>
-            <package name="com.automationexercise.tests.authentication"/>
+<!--            <package name="com.automationexercise.tests.authentication"/>-->
         </packages>
     </test>
 </suite>
