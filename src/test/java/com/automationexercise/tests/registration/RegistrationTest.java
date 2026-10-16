@@ -4,6 +4,7 @@ import com.automationexercise.base.BaseTest;
 import com.automationexercise.dataproviders.UserData;
 import com.automationexercise.listeners.RetryAnalyzer;
 import com.automationexercise.pages.AccountConfirmationPage;
+import com.automationexercise.pages.HomePage;
 import com.automationexercise.pages.RegistrationPage;
 import com.automationexercise.pages.SignupLoginPage;
 import org.testng.Assert;
@@ -17,6 +18,7 @@ public class RegistrationTest extends BaseTest {
     @Test(description = "TC-REG-001: Register User with multiple Data", dataProvider = "RegistrationData",
             dataProviderClass = UserData.class, retryAnalyzer = RetryAnalyzer.class)
     public void registerUser(Map<String, String> registrationData){
+        HomePage homePage = getHomePage();
         SignupLoginPage signupLoginPage = homePage.clickSignupLoginBtn();
         RegistrationPage registrationPage = signupLoginPage.signupUser(registrationData.get("email"), registrationData.get("name"));
         registrationPage.fillCompleteRegistrationDetails(registrationData);

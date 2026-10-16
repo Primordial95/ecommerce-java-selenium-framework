@@ -19,7 +19,7 @@ public class UserData {
                 .map(c -> new Object[]{c}).toArray(Object[][]::new);
     }
 
-    @DataProvider(name = "RegistrationData")
+    @DataProvider(name = "RegistrationData", parallel = true)
     public static Object[][] registrationDetails(){
         return TestDataLoader.getRegistrationData().stream().map(c -> new Object[]{c})
                 .toArray(Object[][]::new);
