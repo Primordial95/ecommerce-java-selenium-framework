@@ -1,24 +1,16 @@
 {
-  "invalidCredentials" : [
+  "invalidCredentials": [
     {
-    "email": "tony.stark@example.com",
-    "password": "IronMan@3000"
-  },
-    {
-      "email": "bruce.wayne@example.com",
-      "password": "Batman@2026"
+      "email": "clark.kent@example.com",
+      "password": "Superman@2026"
     },
     {
-      "email": "peter.parker@example.com",
-      "password": "Spider@2026"
+      "email": "natasha.romanoff@example.com",
+      "password": "Widow@2026"
     },
     {
-      "email": "john.wick@example.com",
-      "password": "Wick@Chapter4"
-    },
-    {
-      "email": "pepper.potts@example.com",
-      "password": "Rescue@2026"
+      "email": "steve.rogers@example.com",
+      "password": "Captain@2026"
     }
   ]
 }

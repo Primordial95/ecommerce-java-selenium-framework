@@ -26,6 +26,7 @@ public class HomePage extends BasePage {
     }
 
     public boolean getuserLoggedIn(String username) {
+        log.info("Verifying if User logged in or not {}", username);
         String loggedInMessageString = "//a[normalize-space(.) = 'Logged in as %s']";
         By loggedInMessage = By.xpath(String.format(loggedInMessageString, username));
         try {
@@ -42,6 +43,7 @@ public class HomePage extends BasePage {
     }
 
     public boolean websiteNameIsPresent() {
+        log.info("Verifying Website Name is displayed");
         return waitForElementToAppear(WEBSITE_NAME).isDisplayed();
     }
 

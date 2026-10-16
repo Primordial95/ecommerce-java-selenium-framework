@@ -14,10 +14,12 @@ public class AccountConfirmationPage extends BasePage {
     }
 
     public String getAccountCreationMessage() {
+        log.info("Verifying that Account Creation Message is displayed");
         return getText(ACCOUNT_CREATED_MESSAGE);
     }
 
     public String getAccountDeletionMessage() {
+        log.info("Verifying that Account Deletion Message is displayed");
         return getText(ACCOUNT_DELETE_MESSAGE);
     }
 

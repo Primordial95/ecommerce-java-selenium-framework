@@ -15,7 +15,6 @@ public class RegistrationPage extends BasePage {
 
     private static final String TITLE_RADIO_BTN_XPATH = "//label[normalize-space(.)='%s']";
     private static final By NAME_FIELD = By.id("name");
-    private static final By EMAIL_FIELD = By.id("email");
     private static final By PASSWORD_FIELD = By.id("password");
     private static final By DOB_DAY_DROPDOWN = By.id("days");
     private static final By DOB_MONTH_DROPDOWN = By.id("months");
@@ -44,16 +43,19 @@ public class RegistrationPage extends BasePage {
     }
 
     public void selectTitle(Map<String, String> data){
+        log.info("Selecting Title {}", data.get("title"));
         clickElem(titleRadioBtn(data.get("title")));
     }
 
     public void fillAccountInformation(Map<String, String> data){
-//        sendKeys(NAME_FIELD, data.get("name"));
-        sendKeys(PASSWORD_FIELD, data.get("password"));
+        log.info("Enter name: {}", data.get("name"));
+        sendKeys(NAME_FIELD, data.get("name"));
+        log.info("Enter password: {}", data.get("password"));
         sendKeys(PASSWORD_FIELD, data.get("password"));
     }
 
     public void selectDateOfBirth(Map<String, String> data){
+        log.info("Selecting Date of Birth: {}", data.get("dateofbirth"));
         String dateofbirth =DateUtils.parsedDate(data.get("dateofbirth"));
         String[] dob = dateofbirth.split("-");
         selectByVisibleText(DOB_DAY_DROPDOWN, String.valueOf(Integer.parseInt(dob[0])));
@@ -62,11 +64,13 @@ public class RegistrationPage extends BasePage {
     }
 
     public void selectCheckBoxNewsletter(){
+        log.info("Checking News letter and promotions");
         clickElem(NEWSLETTER_LABEL);
         clickElem(SPECIAL_OFFERS_LABEL);
     }
 
     public void filAddressInformation(Map<String, String> data){
+        log.info("Entering the Whole address information");
         sendKeys(FIRST_NAME_FIELD, data.get("firstname"));
         sendKeys(LAST_NAME_FIELD, data.get("lastname"));
         sendKeys(COMPANY_FIELD, data.get("company"));

@@ -13,7 +13,7 @@ public class UserData {
                 .map(c -> new Object[]{c}).toArray(Object[][]::new);
     }
 
-    @DataProvider(name= "invalidCredentials")
+    @DataProvider(name= "invalidCredentials", parallel = true)
     public static Object[][] invalidCredentials(){
         return TestDataLoader.getCredentials().getInvalidCredentials().stream()
                 .map(c -> new Object[]{c}).toArray(Object[][]::new);

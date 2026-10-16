@@ -20,6 +20,7 @@ public class SignupLoginPage extends BasePage {
 
 
     public RegistrationPage signupUser(String email, String password) {
+        log.info("Enter Details for Signup with email: {}  password: {}", email, password);
         sendKeys(SIGNUP_EMAIL_FIELD, email);
         sendKeys(SIGNUP_NAME_FIELD, password);
         clickElem(SIGNUP_BTN);
@@ -27,6 +28,7 @@ public class SignupLoginPage extends BasePage {
     }
 
     public void LoginUser(String email, String password) {
+        log.info("Enter Details for Login with email: {}  password: {}", email, password);
         sendKeys(LOGIN_EMAIL_FIELD, email);
         sendKeys(LOGIN_PASSWORD_FIELD, password);
         clickElem(LOGIN_BTN);

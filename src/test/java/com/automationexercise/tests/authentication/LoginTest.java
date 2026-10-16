@@ -30,7 +30,7 @@ public class LoginTest extends BaseTest {
 
 
     @Test(description = "TC-AUTH-001: Verify Login with invalid Credentials", dataProvider = "invalidCredentials",
-            dataProviderClass = UserData.class, priority = 2, dependsOnMethods = "loginWithValidCredentials")
+            dataProviderClass = UserData.class)
     public void loginWithInvalidCredentials(Credential credential) {
         HomePage homePage = getHomePage();
         SignupLoginPage signupLoginPage = homePage.clickSignupLoginBtn();
